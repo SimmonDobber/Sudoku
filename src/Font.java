@@ -1,6 +1,6 @@
 public class Font
 {
-    public static final Font STANDARD = new Font("dobe.png");
+    public static final Font STANDARD = new Font("font.png");
 
     private Image fontImage;
     private int[] offsets;

@@ -25,11 +25,9 @@ public class Renderer
         return;
         p[x + y * pW] = value;
     }
-
     public void drawText(ProgramContainer pc, String text, int offX, int offY, int color)
     {
         int offset = 0;
-
         for(int i = 0; i < text.length(); i++)
         {
             int unicode = text.codePointAt(i) - 32;
@@ -47,7 +45,27 @@ public class Renderer
             offset += font.getWidths()[unicode];
         }
     }
+    public void drawStaticText(ProgramContainer pc, String text, int offX, int offY, int color)
+    {
+        int offset = 0;
 
+        for(int i = 0; i < text.length(); i++)
+        {
+            int unicode = text.codePointAt(i) - 32;
+
+            for(int y = 0; y < font.getFontImage().getH(); y++)
+            {
+                for(int x = 0; x < font.getWidths()[unicode]; x++)
+                {
+                    if(font.getFontImage().getP()[(x + font.getOffsets()[unicode]) + y * font.getFontImage().getW()] == 0xFF000000)
+                    {
+                        setPixel(x + offX + offset, y + offY, color);
+                    }
+                }
+            }
+            offset += font.getWidths()[unicode];
+        }
+    }
     public void drawImage(ProgramContainer pc, Image image, int offX, int offY)
     {
         int newX = 0;
@@ -110,27 +128,6 @@ public class Renderer
             {
                 setPixel(x + offX, y + offY, image.getP()[x + y * image.getW()]);
             }
-        }
-    }
-    public void drawStaticText(ProgramContainer pc, String text, int offX, int offY, int color)
-    {
-        int offset = 0;
-
-        for(int i = 0; i < text.length(); i++)
-        {
-            int unicode = text.codePointAt(i) - 32;
-
-            for(int y = 0; y < font.getFontImage().getH(); y++)
-            {
-                for(int x = 0; x < font.getWidths()[unicode]; x++)
-                {
-                    if(font.getFontImage().getP()[(x + font.getOffsets()[unicode]) + y * font.getFontImage().getW()] == 0xFF000000)
-                    {
-                        setPixel(x + offX + offset, y + offY, color);
-                    }
-                }
-            }
-            offset += font.getWidths()[unicode];
         }
     }
 }

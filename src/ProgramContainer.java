@@ -15,11 +15,11 @@ public class ProgramContainer implements Runnable
     private int fps;
 
     private boolean running = false;
-    private final  double UPDATE_CAP = 1.0 / 66.0;
-    private int width = 800, height = 450;
+    private final  double UPDATE_CAP = 1.0 / 144.0;
+    private int width = 600, height = 400;
     private double time = 0;
     private double passedTime = 0;
-    private float scale = 1.5f;
+    private float scale = 2.0f;
     private  String title = "title";
 
     public ProgramContainer(AbstractProgram program)
@@ -60,6 +60,7 @@ public class ProgramContainer implements Runnable
             lastTime = firstTime;
             unprocessedTime += passedTime;
             frameTime += passedTime;
+
             while(unprocessedTime >= UPDATE_CAP)
             {
                 unprocessedTime -= UPDATE_CAP;
@@ -96,6 +97,14 @@ public class ProgramContainer implements Runnable
         }
         dispose();
     }
+
+    public void forceRender()
+    {
+        renderer.clear();
+        program.render(this, renderer);
+        window.update();
+    }
+
     private void dispose()
     {
 
