@@ -15,6 +15,7 @@ public class Button {
         this.width = width;
         this.height = height;
         img = new Image(path, width, height);
+        img2 = new Image("blank.png", width, height);
         isClicked = false;
     }
 
@@ -28,7 +29,7 @@ public class Button {
         isClicked = false;
     }
 
-    private boolean isOnButton(ProgramContainer pc) {
+    protected boolean isOnButton(ProgramContainer pc) {
         if ((pc.getInput().getMouseX() >= posX) && (pc.getInput().getMouseX() <= posX + width) && (pc.getInput().getMouseY() >= posY) && (pc.getInput().getMouseY() <= posY + height))
             return true;
         return false;
@@ -62,5 +63,13 @@ public class Button {
 
     public Image getImg() {
         return img;
+    }
+
+    public boolean isClicked() {
+        return isClicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        isClicked = clicked;
     }
 }
