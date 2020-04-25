@@ -29,7 +29,7 @@ public class Randomizer extends Button
                 grid.getRows()[i % 9][i / 9] = false;
                 grid.getBoxes()[i % 9][i / 9] = false;
             }
-            amount = (int)(System.nanoTime() % 21 + 10);
+            amount = (int)(System.nanoTime() % 31 + 10);
             System.out.println(amount);
             left = amount;
             while(left > 0)

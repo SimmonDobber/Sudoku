@@ -11,6 +11,7 @@ public class World
     private Randomizer randomizer;
     private Grid grid;
     private Resumer start;
+    private Button controler;
     private Digit[] digits;
 
     public World(ProgramContainer pc, double gravity, double timeSpeed)
@@ -26,7 +27,8 @@ public class World
                digits[i].imageSwap();
         }
         randomizer = new Randomizer("random.png", 460, 280, 69, 69);
-        start = new Resumer("play.png", "pause.png", 460, 50, 69, 69);
+        start = new Resumer("play.png", "pause.png", 460, 40, 69, 69);
+        controler = new Button("human.png", "computer.png", 460, 160, 69, 69);
     }
 
     public void update(ProgramContainer pc, double currentTime)
@@ -34,12 +36,16 @@ public class World
         pause(pc);
         deltaTime = (currentTime - passedTime) * 60;
         passedTime = currentTime;
+        if(start.isClicked() == false)
+        controler.click(pc);
+        if(controler.isClicked() == false)
         start.click(pc);
         randomizer.click(pc, grid, start);
         for(int i = 0; i < 81; i++)
         {
-            digits[i].click(pc, digits);
-            digits[i].change(pc, grid);
+            digits[i].click(pc, digits, grid, controler.isClicked());
+            if((grid.getGiven()[i] == false) || (controler.isClicked() == false))
+            digits[i].change(pc, grid, controler.isClicked());
         }
         paused = start.resume(paused);
         if(paused == true)
@@ -57,6 +63,7 @@ public class World
         grid.render(pc, r);
         r.drawImage(pc, randomizer.getImg(), randomizer.getPosX(), randomizer.getPosY());
         r.drawImage(pc, start.getImg(), start.getPosX(), start.getPosY());
+        r.drawImage(pc, controler.getImg(), controler.getPosX(), controler.getPosY());
     }
     public void pause(ProgramContainer pc)
     {

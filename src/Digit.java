@@ -12,8 +12,8 @@ public class Digit extends Button
         super(path, path2, posX, posY, width, height);
         this.number = i;
     }
-    public void click(ProgramContainer pc, Digit[] digits) {
-        if ((isClicked == false) && (pc.getInput().isButtonDown(MouseEvent.BUTTON1)) && (isOnButton(pc) == true)) {
+    public void click(ProgramContainer pc, Digit[] digits, Grid grid, boolean control) {
+        if ((isClicked == false) && (pc.getInput().isButtonDown(MouseEvent.BUTTON1)) && (isOnButton(pc) == true) && ((grid.getGiven()[number] == false) || (control == false))) {
 
             for(int i = 0; i < 81; i++)
             {
@@ -28,7 +28,7 @@ public class Digit extends Button
             imageSwap();
         }
     }
-    void change(ProgramContainer pc, Grid grid)
+    void change(ProgramContainer pc, Grid grid, boolean control)
     {
         if((isClicked == true) && (pc.getInput().isKeyDown(KeyEvent.VK_0)))
         {
@@ -46,6 +46,7 @@ public class Digit extends Button
         else if((isClicked == true) && (pc.getInput().isKeyDown(KeyEvent.VK_1)))
         {
             isClicked = false;
+            if(control == false)
             grid.getGiven()[number] = true;
             if(grid.getDigits()[number] != 0)
             {
@@ -62,6 +63,7 @@ public class Digit extends Button
         else if((isClicked == true) && (pc.getInput().isKeyDown(KeyEvent.VK_2)))
         {
             isClicked = false;
+            if(control == false)
             grid.getGiven()[number] = true;
             if(grid.getDigits()[number] != 0)
             {
@@ -78,6 +80,7 @@ public class Digit extends Button
         else if((isClicked == true) && (pc.getInput().isKeyDown(KeyEvent.VK_3)))
         {
             isClicked = false;
+            if(control == false)
             grid.getGiven()[number] = true;
             if(grid.getDigits()[number] != 0)
             {
@@ -94,6 +97,7 @@ public class Digit extends Button
         else if((isClicked == true) && (pc.getInput().isKeyDown(KeyEvent.VK_4)))
         {
             isClicked = false;
+            if(control == false)
             grid.getGiven()[number] = true;
             if(grid.getDigits()[number] != 0)
             {
@@ -110,6 +114,7 @@ public class Digit extends Button
         else if((isClicked == true) && (pc.getInput().isKeyDown(KeyEvent.VK_5)))
         {
             isClicked = false;
+            if(control == false)
             grid.getGiven()[number] = true;
             if(grid.getDigits()[number] != 0)
             {
@@ -126,6 +131,7 @@ public class Digit extends Button
         else if((isClicked == true) && (pc.getInput().isKeyDown(KeyEvent.VK_6)))
         {
             isClicked = false;
+            if(control == false)
             grid.getGiven()[number] = true;
             if(grid.getDigits()[number] != 0)
             {
@@ -142,6 +148,7 @@ public class Digit extends Button
         else if((isClicked == true) && (pc.getInput().isKeyDown(KeyEvent.VK_7)))
         {
             isClicked = false;
+            if(control == false)
             grid.getGiven()[number] = true;
             if(grid.getDigits()[number] != 0)
             {
@@ -158,6 +165,7 @@ public class Digit extends Button
         else if((isClicked == true) && (pc.getInput().isKeyDown(KeyEvent.VK_8)))
         {
             isClicked = false;
+            if(control == false)
             grid.getGiven()[number] = true;
             if(grid.getDigits()[number] != 0)
             {
@@ -174,6 +182,7 @@ public class Digit extends Button
         else if((isClicked == true) && (pc.getInput().isKeyDown(KeyEvent.VK_9)))
         {
             isClicked = false;
+            if(control == false)
             grid.getGiven()[number] = true;
             if(grid.getDigits()[number] != 0)
             {
